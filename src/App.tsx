@@ -1,6 +1,9 @@
-function App() {
-  const unuse = 0;
-  return <div>App</div>;
-}
+import Counter from './components/Counter';
 
-export default App;
+export default function Home() {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
