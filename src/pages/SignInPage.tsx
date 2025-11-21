@@ -11,7 +11,11 @@ function SignInPage() {
             </div>
 
             <h1 className="text-3xl font-bold mb-2">Mino</h1>
-            <p className="text-lg opacity-90">Lightweight Markdown Workspace</p>
+            <p className="text-lg opacity-90">
+              Mino 는 복잡하고 무거운 기능을 최소화하고,
+              <p className="text-lg opacity-90">가볍고 직관적인 문서 작성 경험을 제공하기</p>
+              <p className="text-lg opacity-90"> 위해 만들어진 개인용 노트 서비스입니다.</p>
+            </p>
           </div>
         </div>
       </div>
