@@ -1,7 +1,11 @@
 import { SignInCard } from '@/components/SignInCard';
+import { SingUpCard } from '@/components/SignUpCard';
 import { BookOpenText } from 'lucide-react';
+import { useState } from 'react';
 
-function SignInPage() {
+function AuthPage() {
+  const [mode, setMode] = useState<'signup' | 'signin'>('signin');
+
   return (
     <div className="w-screen h-screen flex ">
       <div className="w-1/2">
@@ -20,10 +24,14 @@ function SignInPage() {
       </div>
 
       <div className="w-1/2 h-full flex items-center justify-center bg-gray-100">
-        <SignInCard />
+        {mode === 'signin' ? (
+          <SignInCard onSwitch={() => setMode('signup')} />
+        ) : (
+          <SingUpCard onSwitch={() => setMode('signin')} />
+        )}
       </div>
     </div>
   );
 }
 
-export default SignInPage;
+export default AuthPage;

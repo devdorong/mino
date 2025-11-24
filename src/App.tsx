@@ -1,6 +1,6 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import AuthPage from './pages/AuthPage';
 import IndexPage from './pages/IndexPage';
-import SignInPage from './pages/SignInPage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<IndexPage />} />
-        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/auth" element={<AuthPage />} />
       </Routes>
     </Router>
   );

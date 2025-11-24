@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/fonts/NotoSansKR-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,13 +30,13 @@ html,
 body,
 #root {
   height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+  scrollbar-gutter: stable;
 }
 
 .container-app {
   @apply mx-auto max-w-[var(--app-max-w)] px-4;
 }
-
-
 
 @layer base {
   :root {
@@ -74,8 +93,6 @@ body,
     --chart-5: 340 75% 55%;
   }
 }
-
-
 
 @layer base {
   * {
