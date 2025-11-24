@@ -6,3 +6,9 @@ export interface CounterState {
   reset: () => void; // 카운터 0 초기화
   setCount: (count: number) => void; // 직접 카운터 값 설정
 }
+
+export interface Page {
+  id: string;
+  title: string;
+  content: string;
+}

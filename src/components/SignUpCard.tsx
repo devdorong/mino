@@ -10,8 +10,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstNickname, setFirstNickname] = useState('');
@@ -32,10 +34,10 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
           <div className="flex flex-col gap-6">
             <div className="flex  gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="email">이름</Label>
+                <Label htmlFor="lastNickname">이름</Label>
                 <Input
-                  className="w-full h-12 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                  id="text"
+                  className="w-full h-12 px-4 py-3"
+                  id="lastNickname"
                   type="text"
                   placeholder="길동"
                   required
@@ -44,10 +46,10 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="email">성</Label>
+                <Label htmlFor="firstNickname">성</Label>
                 <Input
-                  className="w-full h-12 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 outline-none focus:outline-none focus-visible:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  id="text"
+                  className="w-full h-12 px-4 py-3"
+                  id="firstNickname"
                   type="text"
                   placeholder="홍"
                   required
@@ -55,6 +57,18 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
                   onChange={e => setFirstNickname(e.target.value)}
                 />
               </div>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="lastNickname">email</Label>
+              <Input
+                className="w-full h-12 px-4 py-3"
+                id="lastNickname"
+                type="text"
+                placeholder="길동"
+                required
+                value={lastNickname}
+                onChange={e => setLastNickname(e.target.value)}
+              />
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
@@ -67,7 +81,7 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
                 </a>
               </div>
               <Input
-                className="w-full h-12 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                className="w-full h-12 px-4 py-3"
                 id="password"
                 type="password"
                 placeholder="비밀번호를 입력해주세요"
@@ -83,6 +97,8 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
         <Button
           type="submit"
           className="w-full h-12 bg-indigo-500 hover:opacity-90 hover:bg-indigo-500"
+          // 추후 로그인 기능
+          onClick={() => navigate('/')}
         >
           로그인
         </Button>
