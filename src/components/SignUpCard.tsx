@@ -1,14 +1,9 @@
+import { signUpWithEmail } from '@/apis/auth';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import type { ProfileInsert } from '@/types/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,8 +13,20 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
   const [password, setPassword] = useState('');
   const [firstNickname, setFirstNickname] = useState('');
   const [lastNickname, setLastNickname] = useState('');
+  const [nickname, setNickname] = useState('');
 
-  const handleSignUp = () => {};
+  const handleSignUp = async () => {
+    const profileData: ProfileInsert = {
+      name: `${lastNickname}${firstNickname}`,
+      nickname,
+    };
+
+    try {
+      await signUpWithEmail({ email, password, profileData });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Card className="w-full max-w-md">
@@ -59,15 +66,27 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
               </div>
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="lastNickname">email</Label>
+              <Label htmlFor="lastNickname">닉네임</Label>
               <Input
                 className="w-full h-12 px-4 py-3"
-                id="lastNickname"
+                id="nickname"
                 type="text"
-                placeholder="길동"
+                placeholder="example@example.com"
                 required
-                value={lastNickname}
-                onChange={e => setLastNickname(e.target.value)}
+                value={nickname}
+                onChange={e => setNickname(e.target.value)}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="lastNickname">이메일</Label>
+              <Input
+                className="w-full h-12 px-4 py-3"
+                id="email"
+                type="text"
+                placeholder="example@example.com"
+                required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div className="grid gap-2">

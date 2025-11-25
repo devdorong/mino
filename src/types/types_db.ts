@@ -20,6 +20,7 @@ export type Database = {
           bio: string
           created_at: string
           id: string
+          name: string
           nickname: string
           role: string
         }
@@ -28,6 +29,7 @@ export type Database = {
           bio?: string
           created_at?: string
           id?: string
+          name: string
           nickname?: string
           role?: string
         }
@@ -36,6 +38,7 @@ export type Database = {
           bio?: string
           created_at?: string
           id?: string
+          name?: string
           nickname?: string
           role?: string
         }
