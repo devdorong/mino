@@ -1,4 +1,4 @@
-import { signUpWithEmail } from '@/apis/auth';
+import { signOut, signUpWithEmail } from '@/apis/auth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import type { ProfileInsert } from '@/types/database';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
   const navigate = useNavigate();
@@ -19,12 +20,22 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
     const profileData: ProfileInsert = {
       name: `${lastNickname}${firstNickname}`,
       nickname,
+      email,
     };
 
     try {
       await signUpWithEmail({ email, password, profileData });
+
+      // console.log('회원가입 성공');
+      // console.log('프로필 데이터', profileData);
+      toast.success('회원가입이 완료되었습니다, 로그인을 통해 여정을 시작하세요', {
+        position: 'top-center',
+      });
+      await signOut();
+      onSwitch();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      toast.error('회원가입 중 오류가 발생했습니다.', { position: 'top-center' });
     }
   };
 
@@ -71,7 +82,7 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
                 className="w-full h-12 px-4 py-3"
                 id="nickname"
                 type="text"
-                placeholder="example@example.com"
+                placeholder="닉네임을 입력해주세요"
                 required
                 value={nickname}
                 onChange={e => setNickname(e.target.value)}
@@ -92,12 +103,6 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
             <div className="grid gap-2">
               <div className="flex items-center">
                 <Label htmlFor="password">비밀번호</Label>
-                <a
-                  href="#"
-                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                >
-                  비밀번호를 잊으셨다면?
-                </a>
               </div>
               <Input
                 className="w-full h-12 px-4 py-3"
@@ -117,9 +122,10 @@ export function SingUpCard({ onSwitch }: { onSwitch: () => void }) {
           type="submit"
           className="w-full h-12 bg-indigo-500 hover:opacity-90 hover:bg-indigo-500"
           // 추후 로그인 기능
-          onClick={() => navigate('/')}
+          // onClick={() => navigate('/')}
+          onClick={handleSignUp}
         >
-          로그인
+          회원가입
         </Button>
         <div className="text-[14px]">
           이미 계정이 있으신가요?

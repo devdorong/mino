@@ -1,3 +1,4 @@
+import type { Database } from '@/types/types_db';
 import { createClient } from '@supabase/supabase-js';
 
 // CRA 의 환경변수 호출과는 형식이 다름.
@@ -9,7 +10,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // auth 기능 추가하기
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
     // 웹브라우저에 탭이 열려있는 동안 인증 토큰 자동 갱신
     autoRefreshToken: true,
